@@ -200,7 +200,8 @@ export default function Login() {
               >
                 Login
               </button>
-              <p
+             <div className=" flex justify-center" >
+             <p
                 data-aos="zoom-in"
                 data-aos-delay="500 "
                 data-aos-duration="1000"
@@ -213,6 +214,7 @@ export default function Login() {
                   Create One
                 </Link>
               </p>
+             </div>
             </form>
           </div>
         </div>
@@ -233,7 +235,7 @@ export default function Login() {
                   theme === "light" && "text-[#4b5664]"
                 }`}
               >
-                Don't have an account ?
+                Don't have an account?
               </h1>
 
               <p
