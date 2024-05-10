@@ -4,17 +4,17 @@ export default function Features() {
     const {theme} = useAuth()
   return (
     <section className="">
-      <div className="container px-6 py-10 mx-auto">
-        <h1 className={`text-2xl font-bold ${theme ==='light'&& 'text-[#4b5664]'} capitalize lg:text-3xl`}>
+      <div className="container px-2 mt-10 mb-4 mx-auto">
+        <h1 className={`text-2xl font-bold  ${theme ==='light'&& 'text-[#4b5664]'} capitalize lg:text-3xl`}>
           explore our <br /> awesome{" "}
           <span className="underline decoration-teal-500">Features</span>
         </h1>
 
-        <p className={`mt-2 ${theme ==='light'&& 'text-[#4b5664]'} xl:mt-2`}>
+        <p className={`mt-2 ${theme ==='light'&& 'text-[#4b5664]'} xl:mt-2 `}>
         Uncover the brilliance within. Explore our standout features designed to redefine your experience.
         </p>
 
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 mt-8 xl:gap-6 md:grid-cols-2 xl:grid-cols-3">
           <div className="p-8 space-y-3 border-[1.5px]  dark:border-teal-500 rounded-xl">
             <span className="inline-block text-teal-500 dark:text-teal-400">
               <svg

@@ -254,7 +254,7 @@ export default function NavBar() {
         >
           <div className="navbar-start w-fit ">
             <a className=" text-2xl font-bold  text-teal-400 ">
-              <span className="text-3xl font-bold">Task</span>
+              <span className="text-3xl font-bold"> Task</span>
               <span
                 className={`font-bold ${
                   theme === "light"

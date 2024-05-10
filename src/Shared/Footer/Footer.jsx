@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "./../../assets/deFaultProfile1.png";
+import logo from "./../../assets/logo/Logo3.png";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
@@ -19,10 +19,10 @@ export default function Footer() {
         <div className="container  flex flex-col justify-between py-16 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/4 ">
           <Fade direction="up" delay={200} cascade={false} triggerOnce={false} >
-          <a
+          <div
               rel="noopener noreferrer"
-              href="#"
-              className="flex justify-center space-x-3 lg:justify-start"
+             
+              className="flex justify-center lg:justify-start"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full ">
                 <img
@@ -31,6 +31,7 @@ export default function Footer() {
                   data-aos-duration="1000"
                   src={logo}
                   alt=""
+                  className=""
                 />
               </div>
 
@@ -38,12 +39,12 @@ export default function Footer() {
                 data-aos="zoom-in-up"
                 data-aos-delay="500 "
                 data-aos-duration="1000"
-                className="font-extrabold  text-2xl text-[#fcb040]  "
+                className="font-extrabold  text-2xl text-teal-400  "
               >
                 <span className="text-3xl font-bold">Task</span>
                 <span className="  font-bold text-base-100 dark:text-white  ">Bud</span>
               </span>
-            </a>
+            </div>
 
             <p className="text-sm text-[#d4cccc] mt-2 max-w-screen-md text-center lg:text-start ">
             Your online hub for collaborative learning and project management excellence.
@@ -69,7 +70,7 @@ export default function Footer() {
                   className="text-[#d4cccc]"
                 >
                  
-                    Top Reviews 
+                    Features 
                  
                 </li>
 
@@ -102,7 +103,7 @@ export default function Footer() {
                   data-aos="zoom-in-up"
                   data-aos-delay="1200 "
                   data-aos-duration="1200"
-                  className="hover:text-[#fcb040] duration-300"
+                  className="hover:text-teal-500 duration-300"
                   
                 >
                   <Link to="/">Home</Link>
@@ -111,7 +112,7 @@ export default function Footer() {
                   data-aos="zoom-in-up"
                   data-aos-delay="1400 "
                   data-aos-duration="1400"
-                  className="hover:text-[#fcb040] duration-300"
+                  className="hover:text-teal-500 duration-300"
                 >
                   <Link to="/register">Register</Link>
                 </li>
@@ -119,7 +120,7 @@ export default function Footer() {
                   data-aos="zoom-in-up"
                   data-aos-delay="1600 "
                   data-aos-duration="1600"
-                  className="hover:text-[#fcb040] duration-300"
+                  className="hover:text-teal-500 duration-300"
                 >
                   <Link to="/login">Login</Link>
                 </li>
@@ -127,7 +128,7 @@ export default function Footer() {
                   data-aos="zoom-in-up"
                   data-aos-delay="1800 "
                   data-aos-duration="1800"
-                  className="hover:text-[#fcb040] duration-300"
+                  className="hover:text-teal-500 duration-300"
                 >
                   <Link to="/contact">Get In Touch</Link>
                 </li>
@@ -153,7 +154,7 @@ export default function Footer() {
                   data-aos-duration="1200"
                   className="flex items-center"
                 >
-                     <FaLocationDot className="text-[#fcb040]" />
+                     <FaLocationDot className="text-teal-400" />
                   <a rel="noopener noreferrer" className="ml-2" href="#">
                  
                     Dhaka, 9999 City
@@ -165,7 +166,7 @@ export default function Footer() {
                   data-aos-duration="1400"
                   className="flex items-center"
                 >
-                    <FaPhoneAlt className="text-[#fcb040]" />
+                    <FaPhoneAlt className="text-teal-400" />
                   <a rel="noopener noreferrer" className="ml-2" href="#">
                     13-543-135
                   </a>
@@ -176,7 +177,7 @@ export default function Footer() {
                   data-aos-duration="1600"
                   className="flex items-center"
                 >
-                    <IoMdMail className="text-[#fcb040]" />
+                    <IoMdMail className="text-teal-400" />
                   <a rel="noopener noreferrer" className="ml-2" href="#">
                     contact@tiptrove.com
                   </a>
@@ -205,7 +206,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   href="#"
                   title="Facebook"
-                  className="flex items-center p-1 hover:text-[#fcb040] duration-300"
+                  className="flex items-center p-1 hover:text-teal-500 duration-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +225,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   href="#"
                   title="Twitter"
-                  className="flex items-center p-1 hover:text-[#fcb040] duration-300"
+                  className="flex items-center p-1 hover:text-teal-500 duration-300"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -242,7 +243,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   href="#"
                   title="Instagram"
-                  className="flex items-center p-1 hover:text-[#fcb040] duration-300"
+                  className="flex items-center p-1 hover:text-teal-500 duration-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
