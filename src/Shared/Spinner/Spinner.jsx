@@ -7,7 +7,7 @@ export default function Spinner() {
   return (
     <>
       <div className="flex item-center justify-center ">
-      <div className="min-h-[90vh]  flex items-center justify-center" >
+      <div className="min-h-[93vh]  flex items-center justify-center" >
       {/* <PropagateLoader color="#66CCCC" />   */}
       <div className="max-w-sm" >
       <Lottie animationData={loader} />
