@@ -91,7 +91,7 @@ export default function Features() {
             </h1>
 
             <p className={`${theme ==='light'&& 'text-[#4b5664]'}`}>
-            Boost teamwork in assignment creation. Collaborate in real-time to refine tasks, creating an interactive learning space for all participants.
+            Boost teamwork in assignment creation. Collaborate in real-time to refine tasks, creating an interactive learning space .
             </p>
 
             <a
@@ -139,7 +139,7 @@ export default function Features() {
             </h1>
 
             <p className={`${theme ==='light'&& 'text-[#4b5664]'}`}>
-            Streamline your assignment search. With this intuitive feature, Easily categorize tasks by difficulty to locate the ideal challenge for your learning goals.
+            Streamline your assignment search. With this intuitive feature, Easily categorize tasks by difficulty to locate the ideal challenge .
             </p>
 
             <a
