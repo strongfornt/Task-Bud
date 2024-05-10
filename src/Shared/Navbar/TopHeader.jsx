@@ -28,15 +28,15 @@ export default function TopHeader() {
               FOLLOW US:
             </h1>
             <div className="flex gap-2 items-center text-[12px] text-[#fdfcfc]   ">
-              <FaFacebookF className="cursor-pointer hover:text-yellow-300 duration-300" />
-              <FaTwitter className="cursor-pointer hover:text-yellow-300 duration-300" />
-              <BiLogoInstagramAlt className="cursor-pointer hover:text-yellow-300 duration-300" />
+              <FaFacebookF className="cursor-pointer hover:text-teal-500 duration-300" />
+              <FaTwitter className="cursor-pointer hover:text-teal-500 duration-300" />
+              <BiLogoInstagramAlt className="cursor-pointer hover:text-teal-500 duration-300" />
             </div>
           </div>
 
           {/* call icons */}
           <div className="text-[#fdfcfc] flex  items-center gap-2 text-[12px] font-bold">
-            <IoMdCall className="text-yellow-300 text-base" />
+            <IoMdCall className="text-teal-500 text-base" />
             <p className="font-semibold">13-543-135</p>
           </div>
         </div>
@@ -85,25 +85,25 @@ export default function TopHeader() {
 
           {loading ? (
             <div className="text-[#fdfcfc] flex  items-center gap-2 text-[12px] font-bold">
-              <IoMdMail className="text-[#fcb040] text-base" />
+              <IoMdMail className="text-teal-500 text-base" />
               <p className="font-semibold">
                 {user?.email || ".....@gmail.com"}
               </p>
             </div>
           ) : user ? (
             <div className="text-[#fdfcfc] flex  items-center gap-2 text-[12px] font-bold">
-              <IoMdMail className="text-[#fcb040] text-base " />
+              <IoMdMail className="text-teal-500 text-base " />
               <p className="font-semibold">{user?.email}</p>
             </div>
           ) : (
             <>
               <Link onClick={()=>setMenu(false)} to="/login">
-                <p className="text-[#fdfcfc] font-medium text-[12px]   hover:text-yellow-300 duration-300 ">
+                <p className="text-[#fdfcfc] font-medium text-[12px]   hover:text-teal-500 duration-300 ">
                   Login
                 </p>
               </Link>
               <Link onClick={()=>setMenu(false)}  to="/register">
-                <p className="text-[#fdfcfc] font-medium text-[12px]  hover:text-yellow-300 duration-300 ">
+                <p className="text-[#fdfcfc] font-medium text-[12px]  hover:text-teal-500 duration-300 ">
                   Register
                 </p>
               </Link>

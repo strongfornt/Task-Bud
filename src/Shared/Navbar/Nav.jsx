@@ -71,8 +71,8 @@ export default function NavBar() {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">Home</p>
@@ -84,8 +84,8 @@ export default function NavBar() {
         to="/allTouristSpot"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">AllTouristSpot</p>
@@ -95,8 +95,8 @@ export default function NavBar() {
         to="/addTouristSpot"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">AddTouristSpot</p>
@@ -106,8 +106,8 @@ export default function NavBar() {
         to="/myList"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">MyList</p>
@@ -118,8 +118,8 @@ export default function NavBar() {
         to="/updateProfile"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">Update Profile</p>
@@ -130,8 +130,8 @@ export default function NavBar() {
         to="/contact"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-[#fcb040] duration-300 `
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
         <p className="">Contact</p> 
@@ -149,8 +149,8 @@ export default function NavBar() {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? ` text-[#fcb040] w-fit  text-sm font-medium  `
-            : `text-sm w-fit  font-medium  hover:text-[#fcb040] duration-300  `
+            ? ` text-teal-400 w-fit  text-sm font-medium  `
+            : `text-sm w-fit  font-medium  hover:text-teal-400 duration-300  `
         }
       >
         <p className="">Home</p>
@@ -165,12 +165,12 @@ export default function NavBar() {
                     to="/allTouristSpot"
                     className={({ isActive }) =>
                       isActive
-                        ? ` text-[#fcb040] w-fit text-sm font-medium  `
+                        ? ` text-teal-400 w-fit text-sm font-medium  `
                         : `text-sm w-fit ${
                             location.pathname === "/" &&
                             scrollY < 199 &&
                             "text-white"
-                          }  font-medium hover:text-[#fcb040] duration-300 `
+                          }  font-medium hover:text-teal-400 duration-300 `
                     }
                   >
                     <p className="">AllTouristSpot</p>
@@ -183,12 +183,12 @@ export default function NavBar() {
                     to="/addTouristSpot"
                     className={({ isActive }) =>
                       isActive
-                        ? ` text-[#fcb040] w-fit text-sm font-medium  `
+                        ? ` text-teal-400 w-fit text-sm font-medium  `
                         : `text-sm w-fit  ${
                             location.pathname === "/" &&
                             scrollY < 199 &&
                             "text-white"
-                          } font-medium hover:text-[#fcb040] duration-300 `
+                          } font-medium hover:text-teal-400 duration-300 `
                     }
                   >
                     <p className="">AddTouristSpot</p>
@@ -201,12 +201,12 @@ export default function NavBar() {
                     to="/myList"
                     className={({ isActive }) =>
                       isActive
-                        ? ` text-[#fcb040] w-fit text-sm font-medium  `
+                        ? ` text-teal-400 w-fit text-sm font-medium  `
                         : `text-sm w-fit ${
                             location.pathname === "/" &&
                             scrollY < 199 &&
                             "text-white"
-                          }  font-medium hover:text-[#fcb040] duration-300 `
+                          }  font-medium hover:text-teal-400 duration-300 `
                     }
                   >
                     <p className="">MyList</p>
@@ -219,12 +219,12 @@ export default function NavBar() {
                     to="/contact"
                     className={({ isActive }) =>
                       isActive
-                        ? ` text-[#fcb040] w-fit text-sm font-medium  `
+                        ? ` text-teal-400 w-fit text-sm font-medium  `
                         : `text-sm w-fit ${
                             location.pathname === "/" &&
                             scrollY < 199 &&
                             "text-white"
-                          }  font-medium hover:text-[#fcb040] duration-300 `
+                          }  font-medium hover:text-teal-400 duration-300 `
                     }
                   >
                     <p className="">Contact</p>
@@ -253,7 +253,7 @@ export default function NavBar() {
           }`}
         >
           <div className="navbar-start w-fit ">
-            <a className=" text-2xl font-bold  text-[#fcb040] ">
+            <a className=" text-2xl font-bold  text-teal-400 ">
               <span className="text-3xl font-bold">Task</span>
               <span
                 className={`font-bold ${
@@ -559,12 +559,12 @@ export default function NavBar() {
                     to="/updateProfile"
                     className={({ isActive }) =>
                       isActive
-                        ? ` text-[#fcb040] w-fit text-sm   `
+                        ? ` text-teal-400 w-fit text-sm   `
                         : `text-sm w-fit ${
                             location.pathname === "/" &&
                             scrollY < 199 &&
                             "text-white"
-                          }   hover:text-[#fcb040] duration-300 `
+                          }   hover:text-teal-400 duration-300 `
                     }
                   >
                     <p className="flex items-center gap-1"> <MdBrowserUpdated className="text-white" /> Update profile</p>
