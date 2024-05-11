@@ -12,7 +12,6 @@ import { Helmet } from "react-helmet-async";
 import { Fade } from "react-awesome-reveal";
 import useAuth from "../../useHooks/useAuth";
 import { MdKeyboardArrowRight } from "react-icons/md";
-
 export default function Register() {
   const {createUser,updateUserProfile,theme} = useAuth()
   const [passToggle, setPassToggle] = useState(false);
@@ -146,7 +145,7 @@ export default function Register() {
                 </label>
                 <input
                   {...register("name")}
-                  
+                  required
                   type="text"
                   name="name"
                   id="name"

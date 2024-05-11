@@ -1,5 +1,4 @@
-
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom/dist";
 
 import profile from "./../../assets/deFaultProfile1.png";
@@ -9,7 +8,7 @@ import { calculateScrollbarWidth } from "./ScrollBar";
 import OutsideClickHandler from "react-outside-click-handler";
 import { SiReactrouter } from "react-icons/si";
 
-import {  IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
 import { MdBrowserUpdated, MdLogout } from "react-icons/md";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
@@ -19,10 +18,9 @@ import useAuth from "../../useHooks/useAuth";
 export default function NavBar() {
   const [scrollY, setScrollY] = useState(0);
 
-  const { user, loading, logOut, theme, setTheme, menu, setMenu } =
-   useAuth();
+  const { user, loading, logOut, theme, setTheme, menu, setMenu } = useAuth();
   const location = useLocation();
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -35,11 +33,9 @@ export default function NavBar() {
   }, []);
 
   const handleLogout = () => {
-    logOut()
-      .then(() => {
-        toast("See you soon!")
-      })
-      
+    logOut().then(() => {
+      toast("See you soon!");
+    });
   };
 
   useEffect(() => {
@@ -66,7 +62,7 @@ export default function NavBar() {
 
   const responsiveNavLinks = (
     <>
-     <NavLink
+      <NavLink
         onClick={() => setMenu(false)}
         to="/"
         className={({ isActive }) =>
@@ -77,18 +73,17 @@ export default function NavBar() {
       >
         <p className="">Home</p>
       </NavLink>
-      
 
       <NavLink
         onClick={() => setMenu(false)}
-        to="/allTouristSpot"
+        to="/assignments"
         className={({ isActive }) =>
           isActive
             ? ` text-teal-400 w-fit text-sm font-medium  `
             : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">AllTouristSpot</p>
+        <p className="">Assignments</p>
       </NavLink>
       <NavLink
         onClick={() => setMenu(false)}
@@ -102,7 +97,7 @@ export default function NavBar() {
         <p className="">AddTouristSpot</p>
       </NavLink>
       <NavLink
-      onClick={() => setMenu(false)}
+        onClick={() => setMenu(false)}
         to="/myList"
         className={({ isActive }) =>
           isActive
@@ -112,20 +107,20 @@ export default function NavBar() {
       >
         <p className="">MyList</p>
       </NavLink>
-      {
-        user &&<NavLink
-        onClick={() => setMenu(false)}
-        to="/updateProfile"
-        className={({ isActive }) =>
-          isActive
-            ? ` text-teal-400 w-fit text-sm font-medium  `
-            : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
-        }
-      >
-        <p className="">Update Profile</p>
-      </NavLink>
-      }
- <NavLink
+      {user && (
+        <NavLink
+          onClick={() => setMenu(false)}
+          to="/updateProfile"
+          className={({ isActive }) =>
+            isActive
+              ? ` text-teal-400 w-fit text-sm font-medium  `
+              : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
+          }
+        >
+          <p className="">Update Profile</p>
+        </NavLink>
+      )}
+      <NavLink
         onClick={() => setMenu(false)}
         to="/contact"
         className={({ isActive }) =>
@@ -134,8 +129,8 @@ export default function NavBar() {
             : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">Contact</p> 
-        </NavLink>
+        <p className="">Contact</p>
+      </NavLink>
     </>
   );
 
@@ -144,7 +139,6 @@ export default function NavBar() {
       <NavLink
         onClick={() => {
           setMenu(false);
-         
         }}
         to="/"
         className={({ isActive }) =>
@@ -155,87 +149,73 @@ export default function NavBar() {
       >
         <p className="">Home</p>
       </NavLink>
-     
- 
+
       <NavLink
-                    onClick={() => {
-                      setMenu(false);
-                      
-                    }}
-                    to="/allTouristSpot"
-                    className={({ isActive }) =>
-                      isActive
-                        ? ` text-teal-400 w-fit text-sm font-medium  `
-                        : `text-sm w-fit ${
-                            location.pathname === "/" &&
-                            scrollY < 199 &&
-                            "text-white"
-                          }  font-medium hover:text-teal-400 duration-300 `
-                    }
-                  >
-                    <p className="">AllTouristSpot</p>
-                  </NavLink>
-                  <NavLink
-                    onClick={() => {
-                      setMenu(false);
-                      
-                    }}
-                    to="/createAssignment"
-                    className={({ isActive }) =>
-                      isActive
-                        ? ` text-teal-400 w-fit text-sm font-medium  `
-                        : `text-sm w-fit  ${
-                            location.pathname === "/" &&
-                            scrollY < 199 &&
-                            "text-white"
-                          } font-medium hover:text-teal-400 duration-300 `
-                    }
-                  >
-                    <p className="">Create Assignment</p>
-                  </NavLink> 
-                  <NavLink
-                    onClick={() => {
-                      setMenu(false);
-                    
-                    }}
-                    to="/myList"
-                    className={({ isActive }) =>
-                      isActive
-                        ? ` text-teal-400 w-fit text-sm font-medium  `
-                        : `text-sm w-fit ${
-                            location.pathname === "/" &&
-                            scrollY < 199 &&
-                            "text-white"
-                          }  font-medium hover:text-teal-400 duration-300 `
-                    }
-                  >
-                    <p className="">MyList</p>
-                  </NavLink> 
-                  <NavLink
-                    onClick={() => {
-                      setMenu(false);
-                     
-                    }}
-                    to="/contact"
-                    className={({ isActive }) =>
-                      isActive
-                        ? ` text-teal-400 w-fit text-sm font-medium  `
-                        : `text-sm w-fit ${
-                            location.pathname === "/" &&
-                            scrollY < 199 &&
-                            "text-white"
-                          }  font-medium hover:text-teal-400 duration-300 `
-                    }
-                  >
-                    <p className="">Contact</p>
-                  </NavLink>
-                 
+        onClick={() => {
+          setMenu(false);
+        }}
+        to="/assignments"
+        className={({ isActive }) =>
+          isActive
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit ${
+                location.pathname === "/" && scrollY < 199 && "text-white"
+              }  font-medium hover:text-teal-400 duration-300 `
+        }
+      >
+        <p className="">Assignments</p>
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          setMenu(false);
+        }}
+        to="/createAssignment"
+        className={({ isActive }) =>
+          isActive
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit  ${
+                location.pathname === "/" && scrollY < 199 && "text-white"
+              } font-medium hover:text-teal-400 duration-300 `
+        }
+      >
+        <p className="">Create Assignment</p>
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          setMenu(false);
+        }}
+        to="/myList"
+        className={({ isActive }) =>
+          isActive
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit ${
+                location.pathname === "/" && scrollY < 199 && "text-white"
+              }  font-medium hover:text-teal-400 duration-300 `
+        }
+      >
+        <p className="">MyList</p>
+      </NavLink>
+      <NavLink
+        onClick={() => {
+          setMenu(false);
+        }}
+        to="/contact"
+        className={({ isActive }) =>
+          isActive
+            ? ` text-teal-400 w-fit text-sm font-medium  `
+            : `text-sm w-fit ${
+                location.pathname === "/" && scrollY < 199 && "text-white"
+              }  font-medium hover:text-teal-400 duration-300 `
+        }
+      >
+        <p className="">Contact</p>
+      </NavLink>
     </>
   );
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <header className="relative  z-30 ">
         <div
           className={`navbar px-2 py-0  md:px-4 lg:8  ${
@@ -443,10 +423,10 @@ export default function NavBar() {
                     </button>
                   ) : (
                     <>
-                       <Link
-                      to="/login"
-                      onClick={() => setMenu(false)}
-                      className={`flex px-6  py-1 w-fit mb-4 relative rounded group overflow-hidden font-medium border-b  
+                      <Link
+                        to="/login"
+                        onClick={() => setMenu(false)}
+                        className={`flex px-6  py-1 w-fit mb-4 relative rounded group overflow-hidden font-medium border-b  
                       ${
                         theme === "light"
                           ? "border-gray-800 text-gray-800"
@@ -454,26 +434,26 @@ export default function NavBar() {
                       }
               
               `}
-                    >
-                      <span
-                        className={`absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0  ${
-                          theme === "light" ? "bg-gray-800" : "bg-gray-50"
-                        } group-hover:h-full opacity-90`}
-                      ></span>
-                      <span
-                        className={`relative ${
-                          theme === "light"
-                            ? "group-hover:text-white"
-                            : "group-hover:text-black"
-                        }  `}
                       >
-                        Login
-                      </span>
-                    </Link> 
-                    <Link
-                      to="/register"
-                      onClick={() => setMenu(false)}
-                      className={`flex px-4 py-1 w-fit  relative rounded group overflow-hidden font-medium border-b  
+                        <span
+                          className={`absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0  ${
+                            theme === "light" ? "bg-gray-800" : "bg-gray-50"
+                          } group-hover:h-full opacity-90`}
+                        ></span>
+                        <span
+                          className={`relative ${
+                            theme === "light"
+                              ? "group-hover:text-white"
+                              : "group-hover:text-black"
+                          }  `}
+                        >
+                          Login
+                        </span>
+                      </Link>
+                      <Link
+                        to="/register"
+                        onClick={() => setMenu(false)}
+                        className={`flex px-4 py-1 w-fit  relative rounded group overflow-hidden font-medium border-b  
                       ${
                         theme === "light"
                           ? "border-gray-800 text-gray-800"
@@ -481,22 +461,22 @@ export default function NavBar() {
                       }
               
               `}
-                    >
-                      <span
-                        className={`absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0  ${
-                          theme === "light" ? "bg-gray-800" : "bg-gray-50"
-                        } group-hover:h-full opacity-90`}
-                      ></span>
-                      <span
-                        className={`relative ${
-                          theme === "light"
-                            ? "group-hover:text-white"
-                            : "group-hover:text-black"
-                        }  `}
                       >
-                        Register
-                      </span>
-                    </Link>
+                        <span
+                          className={`absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0  ${
+                            theme === "light" ? "bg-gray-800" : "bg-gray-50"
+                          } group-hover:h-full opacity-90`}
+                        ></span>
+                        <span
+                          className={`relative ${
+                            theme === "light"
+                              ? "group-hover:text-white"
+                              : "group-hover:text-black"
+                          }  `}
+                        >
+                          Register
+                        </span>
+                      </Link>
                     </>
                   )}
                 </li>
@@ -505,9 +485,6 @@ export default function NavBar() {
             {/* responsive menu end    */}
 
             <ul className="menu menu-horizontal px-1 py-0 h-16 md:gap-8 hidden  md:flex items-center ">
-          
-
-              
               {navLinks}
 
               {loading ? (
@@ -525,60 +502,65 @@ export default function NavBar() {
                 </div>
               ) : (
                 user && (
-                    <div
-                className={`h-full  relative group  flex items-center justify-center `}
-              >
-                <button
-                 
-                >
-                  <div className=" md:flex hidden  items-center gap-1">
-
-                  <div className="avatar">
-                        <div className="w-8 rounded-full tooltip  ">
-                          <img src={user?.photoURL || profile} />
+                  <div
+                    className={`h-full  relative group  flex items-center justify-center `}
+                  >
+                    <button>
+                      <div className=" md:flex hidden  items-center gap-1">
+                        <div className="avatar">
+                          <div className="w-8 rounded-full tooltip  ">
+                            <img src={user?.photoURL || profile} />
+                          </div>
                         </div>
                       </div>
-              
-                  </div>
-                </button>
+                    </button>
 
-                <ul
-                  className="h-fit -translate-y-44 -translate-x-28   group-hover:translate-y-[6.7rem]  transition-transform duration-500
+                    <ul
+                      className="h-fit -translate-y-44 -translate-x-28   group-hover:translate-y-[6.7rem]  transition-transform duration-500
              w-40 px-4 py-4   bg-black text-white  absolute left-0 bottom-0"
-                >
-                    
-                    <IoMdArrowDropup className="text-black text-4xl absolute translate-x-24  -translate-y-[2.3rem] " />
-                    <div className="flex flex-col justify-end items-end gap-2">
-                    { user && <>
-                   <h1 className=" text-sm" >{user?.displayName || "Anonymous"}</h1>
-                   <NavLink
-                    onClick={() => {
-                      setMenu(false);
-                     
-                    }}
-                    to="/updateProfile"
-                    className={({ isActive }) =>
-                      isActive
-                        ? ` text-teal-400 w-fit text-sm   `
-                        : `text-sm w-fit ${
-                            location.pathname === "/" &&
-                            scrollY < 199 &&
-                            "text-white"
-                          }   hover:text-teal-400 duration-300 `
-                    }
-                  >
-                    <p className="flex items-center gap-1"> <MdBrowserUpdated className="text-white" /> Update profile</p>
-                  </NavLink>
-                    <button onClick={handleLogout} className="flex items-center text-sm gap-1" > <MdLogout /> logout</button>
-                   </>}
-                    </div>
-                </ul>
-              </div>
-                  
+                    >
+                      <IoMdArrowDropup className="text-black text-4xl absolute translate-x-24  -translate-y-[2.3rem] " />
+                      <div className="flex flex-col justify-end items-end gap-2">
+                        {user && (
+                          <>
+                            <h1 className=" text-sm">
+                              {user?.displayName || "Anonymous"}
+                            </h1>
+                            <NavLink
+                              onClick={() => {
+                                setMenu(false);
+                              }}
+                              to="/updateProfile"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? ` text-teal-400 w-fit text-sm   `
+                                  : `text-sm w-fit ${
+                                      location.pathname === "/" &&
+                                      scrollY < 199 &&
+                                      "text-white"
+                                    }   hover:text-teal-400 duration-300 `
+                              }
+                            >
+                              <p className="flex items-center gap-1">
+                                {" "}
+                                <MdBrowserUpdated className="text-white" />{" "}
+                                Update profile
+                              </p>
+                            </NavLink>
+                            <button
+                              onClick={handleLogout}
+                              className="flex items-center text-sm gap-1"
+                            >
+                              {" "}
+                              <MdLogout /> logout
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </ul>
+                  </div>
                 )
               )}
-
-             
             </ul>
           </div>
         </div>

@@ -13,12 +13,14 @@ import { useState } from "react";
 
 export default function CreateAssignment() {
   const { user, theme } = useAuth();
-  const { displayName, email,photoURL} = user || {};
- 
+  const { displayName, email, photoURL } = user || {};
+
   const [startDate, setStartDate] = useState(new Date());
-  const date = startDate.toLocaleDateString('en-US', {
-     month: 'short', day: '2-digit', year: 'numeric' 
-    });
+  const date = startDate.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,29 +42,28 @@ export default function CreateAssignment() {
       date,
       creator: {
         email,
-      name,
-      photo:photoURL
-      }
-      
+        name,
+        photo: photoURL,
+      },
     };
 
-    // axios
-    //   .post(
-    //     "https://tourism-server-side-blush.vercel.app/touristSpot",
-    //     touristSpot
-    //   )
-    //   .then((res) => {
-    //     const data = res.data;
-    //     if (data.insertedId) {
-    //       toast.success(" Data added smoothly!");
-    //       form.reset();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Data upload paused. Retry with stable connection.");
-    //     console.log(err);
-    //   });
-    console.log(assignment);
+    axios
+      .post(
+        "https://online-study-server-ten.vercel.app/assignment",
+        // "http://localhost:5000/assignment",
+        assignment
+      )
+      .then((res) => {
+        const data = res.data;
+        if (data.insertedId) {
+          toast.success(" Data added smoothly!");
+          form.reset();
+        }
+      })
+      .catch((err) => {
+        toast.error("Data upload paused. Retry with stable connection.");
+        console.log(err);
+      });
   };
 
   return (
@@ -134,7 +135,8 @@ export default function CreateAssignment() {
                     theme == "light" ? "text-[#4b5664]" : "text-[#d4cccc]"
                   } `}
                 >
-                 Craft interactive assignments with ease. Ignite passion for learning.
+                  Craft interactive assignments with ease. Ignite passion for
+                  learning.
                 </p>
               </Fade>
             </div>
@@ -192,7 +194,7 @@ export default function CreateAssignment() {
                   name="marks"
                   id="marks"
                   min={1}
-          max={100}
+                  max={100}
                   placeholder="marks"
                   className="w-full px-3 py-2 border outline-none rounded-md bg-transparent border-gray-300 focus:ring-1 focus:ring-teal-400"
                 />
@@ -247,7 +249,8 @@ export default function CreateAssignment() {
                   } `}
                 >
                   {" "}
-                  Email and username fields ensure proper credit for your assignments. Personalize your contributions to the platform.
+                  Email and username fields ensure proper credit for your
+                  assignments. Personalize your contributions to the platform.
                 </p>
               </Fade>
             </div>

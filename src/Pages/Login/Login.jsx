@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-
-import toast, { Toaster } from "react-hot-toast";
-
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-
 import { Fade } from "react-awesome-reveal";
 import useAuth from "../../useHooks/useAuth";
 import { useEffect } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const location = useLocation();
-
   const navigate = useNavigate();
-
   const { signInUser, googleLogin, user, theme } = useAuth();
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -44,7 +38,6 @@ export default function Login() {
   };
 
 
-
   useEffect(() => {
     if (user) {
       navigate(location.state);
@@ -56,7 +49,7 @@ export default function Login() {
       <Helmet>
         <title>TaskBud | Login</title>
       </Helmet>
-      <Toaster />
+      
       <div
         className={`${
           theme === "light" && "bg-[#F7F7F7]"

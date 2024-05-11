@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
 import CreateAssignment from "../Pages/CreateAssignment/CreateAssignment";
 import PrivateRoute from "../Private/PrivateRoute";
+import Assignments from "../Pages/Assignments/Assignments";
 
   export const router = createBrowserRouter ([
     {
@@ -31,6 +32,10 @@ import PrivateRoute from "../Private/PrivateRoute";
             {
               path:'/createAssignment',
               element:<PrivateRoute><CreateAssignment/></PrivateRoute>
+            },
+            {
+              path:'/assignments',
+              element:<Assignments/>
             }
         ]
     }

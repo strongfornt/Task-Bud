@@ -5,6 +5,7 @@ import './index.css'
 import { router } from './Router/Router'
 import ContextProvider from './ContextProvider/ContextProvider'
 import { HelmetProvider } from 'react-helmet-async'
+import { Toaster } from 'react-hot-toast'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider>
     <RouterProvider router={router} />
     </HelmetProvider>
+    <Toaster/>
     </ContextProvider>
   </React.StrictMode>,
 )
