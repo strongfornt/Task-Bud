@@ -13,22 +13,21 @@ import { useState } from "react";
 
 export default function CreateAssignment() {
   const { user, theme } = useAuth();
-  const { displayName, email } = user || {};
+  const { displayName, email,photoURL} = user || {};
+ 
   const [startDate, setStartDate] = useState(new Date());
   const date = startDate.toLocaleDateString('en-US', {
-    month: 'numeric',
-    day: 'numeric',
-    year: 'numeric'
-  });
+     month: 'short', day: '2-digit', year: 'numeric' 
+    });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const image = form.image.value;
     const title = form.title.value;
+    const image = form.image.value;
     const difficulty = form.difficulty.value;
-    const description = form.description.value;
     const marks = form.marks.value;
+    const description = form.description.value;
     const email = form.email.value;
     const name = form.name.value;
 
@@ -39,8 +38,12 @@ export default function CreateAssignment() {
       description,
       marks,
       date,
-      email,
+      creator: {
+        email,
       name,
+      photo:photoURL
+      }
+      
     };
 
     // axios
@@ -179,7 +182,6 @@ export default function CreateAssignment() {
                   <option value="Hard">Hard</option>
                 </select>
               </div>
-
               <div className="col-span-full sm:col-span-3">
                 <label htmlFor="marks" className="block text-sm">
                   Assignment Marks
