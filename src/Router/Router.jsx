@@ -36,6 +36,7 @@ import Assignments from "../Pages/Assignments/Assignments";
             {
               path:'/assignments',
               element:<Assignments/>
+              
             }
         ]
     }

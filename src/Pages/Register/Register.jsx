@@ -72,8 +72,7 @@ export default function Register() {
         >
           Register
         </h1>
-
-        <div className="flex gap-1 justify-center items-center  ">
+        <div className="flex gap-1 justify-center items-center w-fit mx-auto  relative  ">
           <Link to="/">
             <p className={`${theme === "light" ? "text-black/65" : ""}`}>
               Homepage
@@ -91,6 +90,7 @@ export default function Register() {
             </p>{" "}
             Register
           </p>
+          <span className="inline-flex w-full absolute bg-[#F7F7F7] translate-y-6 h-[1px]" > </span>
         </div>
       </div>
       <section className="flex justify-between mt-5 mb-10">

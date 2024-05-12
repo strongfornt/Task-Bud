@@ -87,14 +87,14 @@ export default function NavBar() {
       </NavLink>
       <NavLink
         onClick={() => setMenu(false)}
-        to="/addTouristSpot"
+        to="/createAssignment"
         className={({ isActive }) =>
           isActive
             ? ` text-teal-400 w-fit text-sm font-medium  `
             : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">AddTouristSpot</p>
+        <p className="">Create Assignment</p>
       </NavLink>
       <NavLink
         onClick={() => setMenu(false)}
