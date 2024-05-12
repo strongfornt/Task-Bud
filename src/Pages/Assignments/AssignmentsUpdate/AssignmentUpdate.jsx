@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../../useHooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,8 +12,9 @@ import axios from "axios";
 export default function AssignmentUpdate() {
     const {theme } = useAuth();
     const data = useLoaderData();
-    const {  title, image, difficulty, marks,description } = data || {};
-  
+    const {  _id,title, image, difficulty, marks,description } = data || {};
+    
+    const navigate = useNavigate()
   
     const [startDate, setStartDate] = useState(new Date());
     const date = startDate.toLocaleDateString("en-US", {
@@ -31,7 +32,7 @@ export default function AssignmentUpdate() {
         const marks = form.marks.value;
         const description = form.description.value;
     
-        const assignment = {
+        const updateAssignment = {
           image,
           title,
           difficulty,
@@ -40,25 +41,23 @@ export default function AssignmentUpdate() {
           date,
         };
     
-        // axios
-        //   .post(
-        //     "https://online-study-server-ten.vercel.app/assignment",
-        //     // "http://localhost:5000/assignment",
-        //     assignment,
-        //   )
-        //   .then((res) => {
-        //     const data = res.data;
-        //     if (data.insertedId) {
-        //       toast.success(" Data added smoothly!");
-        //       form.reset();
-        //     }
-        //   })
-        //   .catch((err) => {
-        //     toast.error("Data upload paused. Retry with stable connection.");
-        //     console.log(err);
-        //   });
-        console.log(assignment)
-        
+        axios
+          .put(
+            // "https://online-study-server-ten.vercel.app/assignment",
+            `http://localhost:5000/assignment/${_id}`,
+            updateAssignment,
+          )
+          .then((res) => {
+            const data = res.data;
+            if (data.modifiedCount) {
+              toast.success(" Data updated smoothly!");
+              form.reset();
+              navigate('/assignments')
+            }
+          })
+          .catch(() => {
+            toast.error("Data update failed. Please check your connection and try again.");
+          });     
       };
 
   return (

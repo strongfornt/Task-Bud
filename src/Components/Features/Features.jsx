@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAuth from "../../useHooks/useAuth";
 
 export default function Features() {
@@ -47,8 +48,8 @@ export default function Features() {
             Dive into sophistication with our Dark Mode. Elevate focus and comfort in low-light settings. Embrace a sleek, refined interface.
             </p>
 
-            <a
-              href="#"
+            <Link
+              to='/'
               className="inline-flex p-2 text-teal-500 capitalize transition-colors duration-300 transform bg-blue-100 rounded-full rtl:-scale-x-100 dark:bg-teal-500 dark:text-white hover:underline  "
             >
               <svg
@@ -65,7 +66,7 @@ export default function Features() {
                   d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="p-8 space-y-3 border-[1.5px]  dark:border-teal-500 rounded-xl">
@@ -94,8 +95,8 @@ export default function Features() {
             Boost teamwork in assignment creation. Collaborate in real-time to refine tasks, creating an interactive learning space .
             </p>
 
-            <a
-              href="#"
+            <Link
+              to='/createAssignment'
               className="inline-flex p-2 text-teal-500 capitalize transition-colors duration-300 transform bg-blue-100 rounded-full rtl:-scale-x-100 dark:bg-teal-500 dark:text-white hover:underline  "
             >
               <svg
@@ -112,7 +113,7 @@ export default function Features() {
                   d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="p-8 space-y-3 border-[1.5px]  dark:border-teal-500 rounded-xl">
@@ -142,8 +143,8 @@ export default function Features() {
             Streamline your assignment search. With this intuitive feature, Easily categorize tasks by difficulty to locate the ideal challenge .
             </p>
 
-            <a
-              href="#"
+            <Link
+              to='/assignments'
               className="inline-flex p-2 text-teal-500 capitalize transition-colors duration-300 transform bg-blue-100 rounded-full rtl:-scale-x-100 dark:bg-teal-500 dark:text-white hover:underline  "
             >
               <svg
@@ -160,7 +161,7 @@ export default function Features() {
                   d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

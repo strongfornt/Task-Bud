@@ -12,7 +12,10 @@ export default function AssignmentCard({ data,setRefetch, refetch }) {
 
   //delete the document ============================================
   const handleDelete = (id,email) => {
-
+    if(!user) {
+        toast.error('Log in required to proceed with deletion.')
+        return
+    }
 if(email !== user?.email) {
     toast.error("Denied! Only the creator can delete")
     return
@@ -79,6 +82,7 @@ if(email !== user?.email) {
             </div>
           </div>
           <Link
+          to={`/assignmentDetails/${_id}`}
             className={`underline ${
               theme === "light" ? "decoration-black/65" : "decoration-white/65"
             }`}

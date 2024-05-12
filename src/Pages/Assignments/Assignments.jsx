@@ -162,7 +162,7 @@ const handleNext = () =>{
            key={i}
             type="button"
             aria-current="page"
-            className={`inline-flex items-center px-4 py-2 text-sm font-semibold border ${currentPage === c ?'bg-teal-400 text-white':'text-black'   } 
+            className={`inline-flex items-center px-4 py-2  text-sm font-semibold border ${currentPage === c ?'bg-teal-400 text-white':'text-black'   } 
             dark:border-gray-300`}
             
             
