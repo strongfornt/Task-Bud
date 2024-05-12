@@ -1,78 +1,46 @@
 import { Helmet } from "react-helmet-async";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../../useHooks/useAuth";
 import AssignmentCard from "./AssignmentCard";
 import { useEffect, useState } from "react";
-import useTanstack from "../../useHooks/useTanstack";
 import AssignmentSpinner from "../../Shared/Spinner/AssignmentSpinner";
 import axios from "axios";
-
 
 export default function Assignments() {
   const { theme } = useAuth();
   const [data,setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter,setFilter] = useState('');
-  const [width,setWidth] = useState(0)
-  const [itemPerPages, setItemPerPages] = useState(0 || 4);
+  const [itemPerPages, setItemPerPages] = useState(4);
   const [count,setCount] = useState(0);
   const [currentPage,setCurrentPage] = useState(1);
-//   const { data, isLoading, refetch } = useTanstack(api, key);
+  const [refetch,setRefetch] = useState(false)
 
 //data fetch hook===============================================
   useEffect(() => {
     const getData = async () => {
-        const {data} =  await axios(`https://online-study-server-ten.vercel.app/assignment?page=${currentPage}&size=${itemPerPages}&filter=${filter}`)
+        const {data} =  await axios(`http://localhost:5000/assignment?page=${currentPage}&size=${itemPerPages}&filter=${filter}`,{withCredentials:true})
         setData(data)
         setIsLoading(false)
     }
-
     getData()
-    // setApi(`http://localhost:5000/assignment?page=${currentPage}&size=${itemPerPages}&filter=${filter}`)
-    // setKey("assignments")
-   
-  }, [currentPage,itemPerPages,filter]);
+  }, [currentPage,itemPerPages,filter,refetch]);
 
   //data count hook========================================
   useEffect(()=>{
     const getCount = async () =>{
-        const {data} = await axios(`https://online-study-server-ten.vercel.app/assignmentCount?filter=${filter}`)
+        const {data} = await axios(`http://localhost:5000/assignmentCount?filter=${filter}`)
         setCount(data.count)
     }
     getCount()
   },[filter])
  
- 
-  
-  //dynamic responsive detector hook ===================================
-
-  useEffect(()=>{
-    const handleScroll = () => {
-        setWidth(window.innerWidth);
-      };
-      if (width >= 1280) {
-        setItemPerPages(4)
-      } else if (width >= 1024) {
-        setItemPerPages(3)
-      } else if (width >= 768) {
-        setItemPerPages(2)
-      }  else if(width >= 640){
-        setItemPerPages(4)
-      }
-  
-      window.addEventListener("resize", handleScroll);
-      return () => {
-        window.removeEventListener("resize", handleScroll);
-      };
-  },[width])
-  console.log(itemPerPages);
   const numberOfPages = Math.ceil(count / itemPerPages);
   const paginationCount = [
     ...Array(numberOfPages)
       .keys()
-      .map((idx) => idx + 1),
-  ];
+  ].map(c => c+1)
 
 const handlePrev =() =>{
     if(currentPage > 1){
@@ -82,9 +50,9 @@ const handlePrev =() =>{
     
 }
 const handleNext = () =>{
-    if(currentPage < paginationCount.length){
-        setCurrentPage(currentPage +1)   
-    }
+     if(currentPage < paginationCount?.length){
+        setCurrentPage(currentPage +1) 
+     }
 }
   return (
     <>
@@ -157,7 +125,7 @@ const handleNext = () =>{
         <>
           <section className="grid md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 px-2 gap-6 xl:gap-4 my-4">
             {data?.map((data, idx) => (
-              <AssignmentCard key={idx} data={data} />
+              <AssignmentCard refetch={refetch}  setRefetch={setRefetch}  key={idx} data={data} />
             ))}
           </section>{" "}
         </>
@@ -228,6 +196,7 @@ const handleNext = () =>{
         </nav>
         
       </div>
+      
     </>
   );
 }

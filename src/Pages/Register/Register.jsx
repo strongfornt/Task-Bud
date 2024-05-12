@@ -13,7 +13,7 @@ import { Fade } from "react-awesome-reveal";
 import useAuth from "../../useHooks/useAuth";
 import { MdKeyboardArrowRight } from "react-icons/md";
 export default function Register() {
-  const {createUser,updateUserProfile,theme} = useAuth()
+  const {createUser,updateUserProfile,theme,setUser} = useAuth()
   const [passToggle, setPassToggle] = useState(false);
 
   const {
@@ -46,7 +46,9 @@ export default function Register() {
           displayName: name,
           photoURL: photo,
         })
-          .then(() => {})
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+          })
           .catch(() => {});
       })
       .catch(() => toast.error("User already exist!"));

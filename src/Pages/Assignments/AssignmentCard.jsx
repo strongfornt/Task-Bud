@@ -3,9 +3,49 @@ import { AiFillFileMarkdown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import defaultProfile from "./../../assets/logo/deFaultProfile1.png";
 import useAuth from "../../useHooks/useAuth";
-export default function AssignmentCard({ data }) {
+import Swal from "sweetalert2";
+import axios from "axios";
+import toast from "react-hot-toast";
+export default function AssignmentCard({ data,setRefetch, refetch }) {
   const { _id, title, image, difficulty, marks, date, creator } = data || {};
-  const { theme } = useAuth();
+  const { theme,user } = useAuth();
+
+  //delete the document ============================================
+  const handleDelete = (id,email) => {
+
+if(email !== user?.email) {
+    toast.error("Denied! Only the creator can delete")
+    return
+}
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `http://localhost:5000/assignment/${id}`
+          )
+          .then((res) => {
+            const data = res.data;
+            if (data.deletedCount) {
+              // toast.success('Data deleted successfully!')
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              setRefetch(!refetch);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <>
@@ -72,10 +112,14 @@ export default function AssignmentCard({ data }) {
           <h2 className="mb-1 text-xl font-medium">{title}</h2>
         </div>
         <div className="flex flex-wrap justify-between">
-          <button className="px-2 py-[2px] bg-teal-500 text-white rounded-md hover:bg-teal-600 duration-300 font-medium">
+          <Link 
+          to={`/updateAssignment/${_id}`}
+          className="px-2 py-[2px] bg-teal-500 text-white rounded-md hover:bg-teal-600 duration-300 font-medium">
             Update
-          </button>
-          <button className="px-2 bg-red-500 text-white rounded-md hover:bg-red-600 duration-300 font-medium">
+          </Link>
+          <button 
+            onClick={()=>handleDelete(_id,creator?.email)}
+          className="px-2 bg-red-500 text-white rounded-md hover:bg-red-600 duration-300 font-medium">
             Delete
           </button>
         </div>
