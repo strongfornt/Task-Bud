@@ -12,11 +12,11 @@ import axios from "axios";
 export default function AssignmentUpdate() {
     const {theme } = useAuth();
     const data = useLoaderData();
-    const {  _id,title, image, difficulty, marks,description } = data || {};
+    const {  _id,title, image, difficulty, marks,description,date:prevDate } = data || {};
     
     const navigate = useNavigate()
   
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date(prevDate));
     const date = startDate.toLocaleDateString("en-US", {
       month: "short",
       day: "2-digit",

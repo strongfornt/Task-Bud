@@ -5,13 +5,14 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { calculateScrollbarWidth } from "../../Shared/Navbar/ScrollBar";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 
 export default function AssignmentDetails() {
   const { theme,user } = useAuth();
   const [modal,setModal] = useState(false)
   const data = useLoaderData();
-const { _id, title, image, difficulty, marks, date,creator, description } =
+const {  title, image, difficulty, marks, date, description } =
     data || {};
    const {email,displayName} = user || {}
   useEffect(() => {
@@ -30,26 +31,36 @@ const { _id, title, image, difficulty, marks, date,creator, description } =
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    if(email === creator?.email){
-        toast.error("You can't submit your own assignment!")
-        return
-    }
+    // if(email === creator?.email){
+    //     toast.error("You can't submit your own assignment.")
+    //     return
+    // }
     const form = e.target;
     const pdf = form.pdf.value;
     const note = form.note.value;
     const AssignmentSubmit ={
         pdf,
         note,
-        email,
-        displayName,
-        status:"pending"
-
-        
+        title,
+        status:"pending",
+        marks,
+        examinee:{
+            email,
+           name:displayName
+        }
     }
-    console.log(AssignmentSubmit);
-    toast.success("Assignment submitted successfully!")
-    setModal(false)
-    
+        axios.post('http://localhost:5000/submit',AssignmentSubmit)
+        .then((res)=>{
+            const data = res.data;
+            if (data.insertedId) {
+                toast.success("Assignment submitted successfully!")
+                form.reset();
+                setModal(false)
+              }
+        })
+        .catch(()=>{
+            toast.error("Failed to submit assignment. Try again later.")
+        })
   }
 
   return (
@@ -195,7 +206,7 @@ const { _id, title, image, difficulty, marks, date,creator, description } =
                 </button>
 
                 {
-                    modal && <div className="relative flex justify-center">
+                    modal &&    <div className="relative flex justify-center">
                    
 
                     <div
@@ -237,7 +248,7 @@ const { _id, title, image, difficulty, marks, date,creator, description } =
                               type="text"
                               name="pdf"
                               required
-                              placeholder="PDF link"
+                              placeholder="Embed PDF link"
                               className="flex-1 block w-full h-10 px-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                             />
                           </div>
@@ -291,6 +302,12 @@ const { _id, title, image, difficulty, marks, date,creator, description } =
             </div>
           </div>
         </section>
+      </div>
+
+      <div>
+     
+      {/* <iframe src="https://drive.google.com/file/d/1s7CjqwUlNuMtehfpX-03VvZZjpGBhd3d/preview?usp=embed_googleplus" ></iframe> */}
+      {/* <iframe src="https://drive.google.com/file/d/15KpxaO5g5j0JWZpLT46j9JaLte7_uNOO/preview?usp=embed_googleplus" ></iframe> */}
       </div>
     </>
   );

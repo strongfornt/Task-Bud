@@ -58,9 +58,9 @@ export default function CreateAssignment() {
           form.reset();
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Data upload paused. Retry with stable connection.");
-        console.log(err);
+       
       });
     
   };
