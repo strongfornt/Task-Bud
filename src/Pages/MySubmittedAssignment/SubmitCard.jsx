@@ -10,7 +10,7 @@ export default function SubmitCard({data}) {
     <>
            <section className="  mb-6 " >
       <div className="container p-2 mx-auto  dark:text-gray-800">
-	<h2 className={`mb-4 text-2xl font-semibold leading-tight ${theme ==="light" ?'text-[#4b5664] ':'text-white'}`}>Submitted Assignment</h2>
+	<h2 className={`mb-4 text-2xl font-semibold leading-tight ${theme ==="light" ?'text-[#4b5664] ':'text-white'}`}><span className="text-teal-500" >Submitted</span>  Assignment</h2>
 	<div className="overflow-x-auto">
 		<table className="min-w-full text-xs">
 			<colgroup>
@@ -55,7 +55,7 @@ export default function SubmitCard({data}) {
                     <p>{data?.feedback || "Feedback Pending"}</p>
                 </td>
                 <td className="p-3 text-right">
-                    <span className="px-3 py-1 font-semibold rounded-md bg-teal-600 text-gray-50">
+                    <span className="px-3 py-1 font-semibold rounded-md text-blue-500 bg-blue-100/60 ">
                         <span>{data?.status}</span>
                     </span>
                 </td>
@@ -98,6 +98,7 @@ export default function SubmitCard({data}) {
                              type="text"
                              name="pdf"
                              defaultValue={pdf}
+                             readOnly
                              placeholder="Embed PDF link"
                              className="flex-1 block w-full h-10 px-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                            />

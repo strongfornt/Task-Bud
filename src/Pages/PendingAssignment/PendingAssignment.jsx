@@ -2,43 +2,40 @@ import { Helmet } from "react-helmet-async";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../useHooks/useAuth";
-import SubmitCard from "./SubmitCard";
-import useTanstack from "../../useHooks/useTanstack";
+import PendingCard from "./PendingCard";
 import { useEffect, useState } from "react";
-
-import AssignmentSpinner from "../../Shared/Spinner/AssignmentSpinner";
-import NotFound from "./NotFound";
+import axios from "axios";
 
 
-export default function SubmittedAssignment() {
-    const {theme,user} = useAuth()
-    const [api,setApi] = useState(null);
-    const {data,isLoading} = useTanstack(api,"submittedAssignment")
+export default function PendingAssignment() {
+    const {theme} = useAuth();
+    const [data,setData] = useState([])
+
     useEffect(()=>{
-        if(user?.email){
-            setApi(`http://localhost:5000/submit/${user?.email}`)
-        }
-    },[user?.email])
-    
-    
+      axios.get('http://localhost:5000/pending')
+      .then(res => setData(res.data) )
+      .catch((err)=>console.log(err))
+    },[])
+
   return (
-   <>
-         <Helmet>
-        <title>TaskBud | My Submitted</title>
+    <>
+    <Helmet>
+        <title>TaskBud | Pending Assignments</title>
       </Helmet>
 
       <div
         className={`${
           theme === "light" && "bg-[#F7F7F7]"
-        } pt-24 pb-12 space-y-3`}
+        } pt-24 pb-12 space-y-3 `}
       >
         <h1
           className={`text-center text-3xl  md:text-4xl font-semibold ${
             theme === "light" && "text-[#4b5664]"
           }`}
         >
-          My Submitted
+         Pending Assignments
         </h1>
+
         <div className="flex gap-1 justify-center items-center w-fit mx-auto  relative  ">
           <Link to="/">
             <p className={`${theme === "light" ? "text-black/65" : ""}`}>
@@ -55,15 +52,15 @@ export default function SubmittedAssignment() {
             <p>
               <MdKeyboardArrowRight />
             </p>{" "}
-           My Submitted
+           Pending Assignments
           </p>
-          <span className="inline-flex w-full absolute bg-[#F7F7F7] translate-y-6 h-[1px]" > </span>
+          <span className="inline-flex w-full absolute bg-[#F7F7F7] translate-y-6 h-[1px]">
+            {" "}
+          </span>
         </div>
       </div>
-            {
-                isLoading ? <AssignmentSpinner/> : data?.length ? <SubmitCard data={data} /> :<NotFound/>
-            }
-            
-   </>
+
+      <PendingCard data={data} />
+    </>
   )
 }

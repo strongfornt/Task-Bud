@@ -98,26 +98,26 @@ export default function NavBar() {
       </NavLink>
       <NavLink
         onClick={() => setMenu(false)}
-        to="/myList"
+        to="/mySubmitted"
         className={({ isActive }) =>
           isActive
             ? ` text-teal-400 w-fit text-sm font-medium  `
             : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">MyList</p>
+        <p className="">My Submitted</p>
       </NavLink>
       {user && (
         <NavLink
           onClick={() => setMenu(false)}
-          to="/updateProfile"
+          to="/pendingAssignment"
           className={({ isActive }) =>
             isActive
               ? ` text-teal-400 w-fit text-sm font-medium  `
               : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
           }
         >
-          <p className="">Update Profile</p>
+          <p className="">Pending Assignment</p>
         </NavLink>
       )}
       <NavLink
@@ -199,7 +199,7 @@ export default function NavBar() {
         onClick={() => {
           setMenu(false);
         }}
-        to="/contact"
+        to="/pendingAssignment"
         className={({ isActive }) =>
           isActive
             ? ` text-teal-400 w-fit text-sm font-medium  `
@@ -208,7 +208,7 @@ export default function NavBar() {
               }  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">Contact</p>
+        <p className="">Pending Assignment</p>
       </NavLink>
     </>
   );

@@ -40,7 +40,11 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate(location.state);
+     if(location.state){
+        navigate(location.state);
+     }else{
+        navigate('/')
+     }
     }
   }, [location.state, navigate, user]);
 
