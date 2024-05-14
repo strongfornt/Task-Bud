@@ -48,14 +48,14 @@ export default function SubmitCard({data}) {
                     }} >Show</button>    
                 </td>
                 <td className="p-3">
-                    <p>{data?.obtainedMark || "N/A"}</p>
+                    <p>{data?.grade || "N/A"}</p>
                     
                 </td>
                 <td className="p-3 text-start">
                     <p>{data?.feedback || "Feedback Pending"}</p>
                 </td>
                 <td className="p-3 text-right">
-                    <span className="px-3 py-1 font-semibold rounded-md text-blue-500 bg-blue-100/60 ">
+                    <span className={`px-3 py-1 font-semibold rounded-md ${data?.status ==="pending"?'text-blue-500 bg-blue-100/60':'bg-emerald-100/60 text-emerald-500'}`}>
                         <span>{data?.status}</span>
                     </span>
                 </td>

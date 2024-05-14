@@ -2,10 +2,13 @@ import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Banner/Banner";
 import Faq from "../../Components/Faq/Faq";
 import Features from "../../Components/Features/Features";
+import Check from "../../Shared/Navbar/Check";
+import useAuth from "../../useHooks/useAuth";
 
 
 
 export default function Home() {
+  const{setDropdown,setMenu} = useAuth()
   return (
     <>
      <Helmet>
@@ -14,7 +17,10 @@ export default function Home() {
     </title>
     </Helmet>
       {/* banner start */}
-          <div>
+          <div onClick={()=>{
+            setDropdown(false)
+            setMenu(false)
+          }} >
         <Banner/>
           </div>
           <div>
@@ -24,9 +30,10 @@ export default function Home() {
             <Faq/>
           </div>
 
-          {/* <div>
-            <Spinner/>
-          </div> */}
+      
+          <div>
+            <Check/>
+          </div>
     </>
   )
 }

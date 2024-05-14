@@ -206,11 +206,11 @@ const {  title, image, difficulty, marks, date, description } =
                 </button>
 
                 {
-                    modal &&    <div className="relative flex justify-center">
+                    modal &&    <div className="relative flex z-50 justify-center">
                    
 
                     <div
-                      className="fixed inset-0 z-10 overflow-y-auto"
+                      className="fixed inset-0  overflow-y-auto"
                       aria-labelledby="modal-title"
                       role="dialog"
                       aria-modal="true"
@@ -264,7 +264,7 @@ const {  title, image, difficulty, marks, date, description } =
                             </div>
                           </div>
 
-                          <div className="mt-4 sm:flex sm:items-center sm:justify-between sm:gap-2  sm:-mx-2">
+                          <div className="mt-4 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between sm:gap-2  sm:-mx-2">
                           <button 
                           onClick={()=>setModal(false)}
                           className="px-4  sm:mx-2 w-full py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
@@ -274,7 +274,7 @@ const {  title, image, difficulty, marks, date, description } =
                             <button
                        
                           type="submit"
-                          className="px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                          className="px-4 sm:mx-2 w-full py-2.5 mb-3 sm:mb-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
                               Submit
                             </button>
                           </div>
@@ -306,8 +306,7 @@ const {  title, image, difficulty, marks, date, description } =
 
       <div>
      
-      {/* <iframe src="https://drive.google.com/file/d/1s7CjqwUlNuMtehfpX-03VvZZjpGBhd3d/preview?usp=embed_googleplus" ></iframe> */}
-      {/* <iframe src="https://drive.google.com/file/d/15KpxaO5g5j0JWZpLT46j9JaLte7_uNOO/preview?usp=embed_googleplus" ></iframe> */}
+    
       </div>
     </>
   );

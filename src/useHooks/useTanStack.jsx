@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 
@@ -10,6 +10,7 @@ export default function useTanstack(url,key) {
             return data.data;
         }
  })
+
 
  return {data,isLoading,refetch}
 }

@@ -37,7 +37,7 @@ if(email !== user?.email) {
           .then((res) => {
             const data = res.data;
             if (data.deletedCount) {
-              // toast.success('Data deleted successfully!')
+              
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",

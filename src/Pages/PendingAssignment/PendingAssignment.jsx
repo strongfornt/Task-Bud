@@ -3,20 +3,18 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../useHooks/useAuth";
 import PendingCard from "./PendingCard";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import AssignmentSpinner from "../../Shared/Spinner/AssignmentSpinner";
+import useTanstack from "../../useHooks/useTanstack";
+import NotFound from "../MySubmittedAssignment/NotFound";
 
 
 export default function PendingAssignment() {
     const {theme} = useAuth();
-    const [data,setData] = useState([])
-
-    useEffect(()=>{
-      axios.get('http://localhost:5000/pending')
-      .then(res => setData(res.data) )
-      .catch((err)=>console.log(err))
-    },[])
-
+    
+  const {data,isLoading} = useTanstack('http://localhost:5000/pending',"pending")
+ 
+console.log(data?.length);
+  
   return (
     <>
     <Helmet>
@@ -60,7 +58,11 @@ export default function PendingAssignment() {
         </div>
       </div>
 
-      <PendingCard data={data} />
+      {
+        isLoading ?  <AssignmentSpinner/> :data?.length ? <PendingCard data={data} /> :<NotFound/>
+      }
+           
+      
     </>
   )
 }

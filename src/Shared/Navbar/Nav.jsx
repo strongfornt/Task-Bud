@@ -9,7 +9,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { SiReactrouter } from "react-icons/si";
 
 import { IoMdArrowDropup } from "react-icons/io";
-import { MdBrowserUpdated, MdLogout } from "react-icons/md";
+
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 
@@ -17,8 +17,9 @@ import useAuth from "../../useHooks/useAuth";
 
 export default function NavBar() {
   const [scrollY, setScrollY] = useState(0);
+  
 
-  const { user, loading, logOut, theme, setTheme, menu, setMenu } = useAuth();
+  const { user, loading, logOut, theme, setTheme, menu, setMenu,dropdown,setDropdown } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -180,21 +181,7 @@ export default function NavBar() {
       >
         <p className="">Create Assignment</p>
       </NavLink>
-      <NavLink
-        onClick={() => {
-          setMenu(false);
-        }}
-        to="/mySubmitted"
-        className={({ isActive }) =>
-          isActive
-            ? ` text-teal-400 w-fit text-sm font-medium  `
-            : `text-sm w-fit ${
-                location.pathname === "/" && scrollY < 199 && "text-white"
-              }  font-medium hover:text-teal-400 duration-300 `
-        }
-      >
-        <p className="">My Submitted</p>
-      </NavLink>
+   
       <NavLink
         onClick={() => {
           setMenu(false);
@@ -505,7 +492,11 @@ export default function NavBar() {
                   <div
                     className={`h-full  relative group  flex items-center justify-center `}
                   >
-                    <button>
+                    <OutsideClickHandler onOutsideClick={() => setDropdown(false)} >
+                    <div className="relative inline-block ">
+                   <button 
+                    onClick={()=>setDropdown(!dropdown)}
+                   >
                       <div className=" md:flex hidden  items-center gap-1">
                         <div className="avatar">
                           <div className="w-8 rounded-full tooltip  ">
@@ -515,49 +506,93 @@ export default function NavBar() {
                       </div>
                     </button>
 
-                    <ul
-                      className="h-fit -translate-y-44 -translate-x-28   group-hover:translate-y-[6.7rem]  transition-transform duration-500
-             w-40 px-4 py-4   bg-black text-white  absolute left-0 bottom-0"
-                    >
-                      <IoMdArrowDropup className="text-black text-4xl absolute translate-x-24  -translate-y-[2.3rem] " />
-                      <div className="flex flex-col justify-end items-end gap-2">
-                        {user && (
-                          <>
-                            <h1 className=" text-sm">
-                              {user?.displayName || "Anonymous"}
-                            </h1>
-                            <NavLink
-                              onClick={() => {
-                                setMenu(false);
-                              }}
-                              to="/updateProfile"
-                              className={({ isActive }) =>
-                                isActive
-                                  ? ` text-teal-400 w-fit text-sm   `
-                                  : `text-sm w-fit ${
-                                      location.pathname === "/" &&
-                                      scrollY < 199 &&
-                                      "text-white"
-                                    }   hover:text-teal-400 duration-300 `
-                              }
-                            >
-                              <p className="flex items-center gap-1">
-                                {" "}
-                                <MdBrowserUpdated className="text-white" />{" "}
-                                Update profile
-                              </p>
-                            </NavLink>
-                            <button
-                              onClick={handleLogout}
-                              className="flex items-center text-sm gap-1"
-                            >
-                              {" "}
-                              <MdLogout /> logout
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </ul>
+        {/* <!-- Dropdown menu --> */}
+        {dropdown && <div>
+        <IoMdArrowDropup className="text-gray-900 z-30 absolute -translate-y-[10.5px] translate-x-[2px] text-4xl  " />
+        <div
+       
+          className="absolute right-0  z-20 w-48 py-2 mt-3 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+        >
+          <a
+            
+            className="flex items-center  px-3 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg
+              className="w-5 h-5 mx-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M6.34315 16.3431C4.84285 17.8434 4 19.8783 4 22H6C6 20.4087 6.63214 18.8826 7.75736 17.7574C8.88258 16.6321 10.4087 16 12 16C13.5913 16 15.1174 16.6321 16.2426 17.7574C17.3679 18.8826 18 20.4087 18 22H20C20 19.8783 19.1571 17.8434 17.6569 16.3431C16.1566 14.8429 14.1217 14 12 14C9.87827 14 7.84344 14.8429 6.34315 16.3431Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+
+            <span className="mx-1">{user?.displayName || "Anonymous"}</span>
+          </a>
+
+          <hr className="border-gray-200 dark:border-gray-700 " />
+
+          <Link
+            to="/updateProfile"
+            onClick={()=>setDropdown(false)} 
+            className="flex cursor-pointer items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg
+              className="w-5 h-5 mx-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 22C15.8082 21.9947 14.0267 20.2306 14 18.039V16H9.99996V18.02C9.98892 20.2265 8.19321 22.0073 5.98669 22C3.78017 21.9926 1.99635 20.1999 2.00001 17.9934C2.00367 15.7868 3.79343 14 5.99996 14H7.99996V9.99999H5.99996C3.79343 9.99997 2.00367 8.21315 2.00001 6.00663C1.99635 3.8001 3.78017 2.00736 5.98669 1.99999C8.19321 1.99267 9.98892 3.77349 9.99996 5.97999V7.99999H14V5.99999C14 3.79085 15.7908 1.99999 18 1.99999C20.2091 1.99999 22 3.79085 22 5.99999C22 8.20913 20.2091 9.99999 18 9.99999H16V14H18C20.2091 14 22 15.7909 22 18C22 20.2091 20.2091 22 18 22ZM16 16V18C16 19.1046 16.8954 20 18 20C19.1045 20 20 19.1046 20 18C20 16.8954 19.1045 16 18 16H16ZM5.99996 16C4.89539 16 3.99996 16.8954 3.99996 18C3.99996 19.1046 4.89539 20 5.99996 20C6.53211 20.0057 7.04412 19.7968 7.42043 19.4205C7.79674 19.0442 8.00563 18.5321 7.99996 18V16H5.99996ZM9.99996 9.99999V14H14V9.99999H9.99996ZM18 3.99999C17.4678 3.99431 16.9558 4.2032 16.5795 4.57952C16.2032 4.95583 15.9943 5.46784 16 5.99999V7.99999H18C18.5321 8.00567 19.0441 7.79678 19.4204 7.42047C19.7967 7.04416 20.0056 6.53215 20 5.99999C20.0056 5.46784 19.7967 4.95583 19.4204 4.57952C19.0441 4.2032 18.5321 3.99431 18 3.99999ZM5.99996 3.99999C5.4678 3.99431 4.95579 4.2032 4.57948 4.57952C4.20317 4.95583 3.99428 5.46784 3.99996 5.99999C3.99428 6.53215 4.20317 7.04416 4.57948 7.42047C4.95579 7.79678 5.4678 8.00567 5.99996 7.99999H7.99996V5.99999C8.00563 5.46784 7.79674 4.95583 7.42043 4.57952C7.04412 4.2032 6.53211 3.99431 5.99996 3.99999Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+
+            <span className="mx-1">Update profile</span>
+          </Link>
+          <Link to="/mySubmitted" onClick={()=>setDropdown(false)} className="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+            <svg className="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 19H3C1.89543 19 1 18.1046 1 17V16H3V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V16H23V17C23 18.1046 22.1046 19 21 19ZM5 7V16H19V7H5Z" fill="currentColor"></path>
+            </svg>
+
+            <span className="mx-1">
+                My Submitted
+            </span>
+        </Link>
+          <hr className="border-gray-200 dark:border-gray-700 " />
+
+          <a
+            onClick={()=>{
+              handleLogout()
+              setDropdown(false)
+            }}
+            className="flex cursor-pointer items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg
+              className="w-5 h-5 mx-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+
+            <span  className="mx-1">Sign Out</span>
+          </a>
+        </div>
+        </div>}
+      </div>
+                    </OutsideClickHandler>
                   </div>
                 )
               )}
