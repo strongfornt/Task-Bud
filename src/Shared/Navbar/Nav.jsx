@@ -97,7 +97,18 @@ export default function NavBar() {
       >
         <p className="">Create Assignment</p>
       </NavLink>
-      <NavLink
+     {
+      loading ?  <NavLink
+      onClick={() => setMenu(false)}
+      to="/mySubmitted"
+      className={({ isActive }) =>
+        isActive
+          ? ` text-teal-400 w-fit text-sm font-medium  `
+          : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
+      }
+    >
+      <p className="">My Submitted</p>
+    </NavLink> : user &&  <NavLink
         onClick={() => setMenu(false)}
         to="/mySubmitted"
         className={({ isActive }) =>
@@ -108,7 +119,18 @@ export default function NavBar() {
       >
         <p className="">My Submitted</p>
       </NavLink>
-      {user && (
+     }
+      {loading ?<NavLink
+          onClick={() => setMenu(false)}
+          to="/pendingAssignment"
+          className={({ isActive }) =>
+            isActive
+              ? ` text-teal-400 w-fit text-sm font-medium  `
+              : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
+          }
+        >
+          <p className="">Pending Assignment</p>
+        </NavLink> : user && (
         <NavLink
           onClick={() => setMenu(false)}
           to="/pendingAssignment"
@@ -121,17 +143,29 @@ export default function NavBar() {
           <p className="">Pending Assignment</p>
         </NavLink>
       )}
-      <NavLink
+     {
+      loading ?  <NavLink
+      onClick={() => setMenu(false)}
+      to="/updateProfile"
+      className={({ isActive }) =>
+        isActive
+          ? ` text-teal-400 w-fit text-sm font-medium  `
+          : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
+      }
+    >
+      <p className="">Update Profile</p>
+    </NavLink> : user &&  <NavLink
         onClick={() => setMenu(false)}
-        to="/contact"
+        to="/updateProfile"
         className={({ isActive }) =>
           isActive
             ? ` text-teal-400 w-fit text-sm font-medium  `
             : `text-sm w-fit  font-medium hover:text-teal-400 duration-300 `
         }
       >
-        <p className="">Contact</p>
+        <p className="">Update Profile</p>
       </NavLink>
+     }
     </>
   );
 
@@ -182,7 +216,22 @@ export default function NavBar() {
         <p className="">Create Assignment</p>
       </NavLink>
    
-      <NavLink
+    {
+      loading?   <NavLink
+      onClick={() => {
+        setMenu(false);
+      }}
+      to="/pendingAssignment"
+      className={({ isActive }) =>
+        isActive
+          ? ` text-teal-400 w-fit text-sm font-medium  `
+          : `text-sm w-fit ${
+              location.pathname === "/" && scrollY < 199 && "text-white"
+            }  font-medium hover:text-teal-400 duration-300 `
+      }
+    >
+      <p className="">Pending Assignment</p>
+    </NavLink> : user&&  <NavLink
         onClick={() => {
           setMenu(false);
         }}
@@ -197,6 +246,7 @@ export default function NavBar() {
       >
         <p className="">Pending Assignment</p>
       </NavLink>
+    }
     </>
   );
 

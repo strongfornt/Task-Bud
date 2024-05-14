@@ -59,11 +59,11 @@ import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
             },
             {
               path:'/pendingAssignment',
-              element:<PendingAssignment/>
+              element:<PrivateRoute><PendingAssignment/></PrivateRoute>
             },
             {
               path:'/updateProfile',
-              element:<UpdateProfile/>
+              element:<PrivateRoute><UpdateProfile/></PrivateRoute>
             }
         ]
     }

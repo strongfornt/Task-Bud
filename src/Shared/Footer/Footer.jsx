@@ -130,7 +130,7 @@ export default function Footer() {
                   data-aos-duration="1800"
                   className="hover:text-teal-500 duration-300"
                 >
-                  <Link to="/contact">Get In Touch</Link>
+                  <Link to="/assignments">Assignments</Link>
                 </li>
                </Fade>
               </ul>
@@ -179,7 +179,7 @@ export default function Footer() {
                 >
                     <IoMdMail className="text-teal-400" />
                   <a rel="noopener noreferrer" className="ml-2" href="#">
-                    contact@tiptrove.com
+                    contact@taskbud.com
                   </a>
                 </li>
                </Fade>

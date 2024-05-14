@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Banner/Banner";
 import Faq from "../../Components/Faq/Faq";
 import Features from "../../Components/Features/Features";
-import Check from "../../Shared/Navbar/Check";
+
 import useAuth from "../../useHooks/useAuth";
 
 
@@ -31,9 +31,7 @@ export default function Home() {
           </div>
 
       
-          <div>
-            <Check/>
-          </div>
+        
     </>
   )
 }
