@@ -7,17 +7,17 @@ import AssignmentSpinner from "../../Shared/Spinner/AssignmentSpinner";
 import useTanstack from "../../useHooks/useTanstack";
 import NotFound from "../MySubmittedAssignment/NotFound";
 
-
 export default function PendingAssignment() {
-    const {theme} = useAuth();
-    
-  const {data,isLoading} = useTanstack('http://localhost:5000/pending',"pending")
- 
-console.log(data?.length);
-  
+  const { theme } = useAuth();
+
+  const { data, isLoading } = useTanstack(
+    "http://localhost:5000/pending",
+    "pending"
+  );
+
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>TaskBud | Pending Assignments</title>
       </Helmet>
 
@@ -31,7 +31,7 @@ console.log(data?.length);
             theme === "light" && "text-[#4b5664]"
           }`}
         >
-         Pending Assignments
+          Pending Assignments
         </h1>
 
         <div className="flex gap-1 justify-center items-center w-fit mx-auto  relative  ">
@@ -50,7 +50,7 @@ console.log(data?.length);
             <p>
               <MdKeyboardArrowRight />
             </p>{" "}
-           Pending Assignments
+            Pending Assignments
           </p>
           <span className="inline-flex w-full absolute bg-[#F7F7F7] translate-y-6 h-[1px]">
             {" "}
@@ -58,11 +58,13 @@ console.log(data?.length);
         </div>
       </div>
 
-      {
-        isLoading ?  <AssignmentSpinner/> :data?.length ? <PendingCard data={data} /> :<NotFound/>
-      }
-           
-      
+      {isLoading ? (
+        <AssignmentSpinner />
+      ) : data?.length ? (
+        <PendingCard data={data} />
+      ) : (
+        <NotFound />
+      )}
     </>
-  )
+  );
 }
