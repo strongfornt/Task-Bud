@@ -1,17 +1,20 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+
 import toast, { Toaster } from "react-hot-toast";
 import { Fade } from "react-awesome-reveal";
 import useAuth from "../../useHooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useAxiosSecure from "../../useHooks/useAxiosSecure";
 
 export default function CreateAssignment() {
-  const { user, theme } = useAuth();
+  const { user, theme,logOut } = useAuth();
   const { displayName, email, photoURL } = user || {};
+  const axiosSecure =useAxiosSecure()
+  const navigate = useNavigate()
 
   const [startDate, setStartDate] = useState(new Date());
   const date = startDate.toLocaleDateString("en-US", {
@@ -45,24 +48,29 @@ export default function CreateAssignment() {
       },
     };
 
-    axios
-      .post(
-        "https://online-study-server-ten.vercel.app/assignment",
-        // "http://localhost:5000/assignment",
-        assignment,
-      )
-      .then((res) => {
-        const data = res.data;
-        if (data.insertedId) {
-          toast.success(" Data added smoothly!");
-          form.reset();
+    const postData =async () => {
+        try {
+          const {data} = await  axiosSecure.post(
+            // "https://online-study-server-ten.vercel.app/assignment?email=${email}",
+            `/assignment?email=${email}`,
+            assignment
+          )
+          if (data.insertedId) {
+            toast.success(" Data added smoothly!");
+            form.reset();
+          }
+        }catch(err){
+          if(err.response.status === 401 || err.response.status === 403){
+            toast.error(`${err.response.data.message} log in with valid credentials.`)
+            await logOut()
+            navigate('/login')
+        }else{
+          toast.error("Data upload paused. Retry with stable connection.");
         }
-      })
-      .catch(() => {
-        toast.error("Data upload paused. Retry with stable connection.");
-       
-      });
-    
+        }
+    }
+
+    postData() 
   };
 
   return (

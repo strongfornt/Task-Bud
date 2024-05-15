@@ -6,12 +6,15 @@ import { useEffect, useState } from "react";
 import { calculateScrollbarWidth } from "../../Shared/Navbar/ScrollBar";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useAxiosSecure from "../../useHooks/useAxiosSecure";
 
 
 export default function AssignmentDetails() {
   const { theme,user } = useAuth();
   const [modal,setModal] = useState(false)
-  const data = useLoaderData();
+  const axiosSecure = useAxiosSecure()
+    const data = useLoaderData()
+    console.log(data);
 const {  title, image, difficulty, marks, date, description } =
     data || {};
    const {email,displayName} = user || {}
@@ -31,10 +34,6 @@ const {  title, image, difficulty, marks, date, description } =
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    // if(email === creator?.email){
-    //     toast.error("You can't submit your own assignment.")
-    //     return
-    // }
     const form = e.target;
     const pdf = form.pdf.value;
     const note = form.note.value;
@@ -49,7 +48,7 @@ const {  title, image, difficulty, marks, date, description } =
            name:displayName
         }
     }
-        axios.post('http://localhost:5000/submit',AssignmentSubmit)
+        axiosSecure.post('/submit',AssignmentSubmit)
         .then((res)=>{
             const data = res.data;
             if (data.insertedId) {

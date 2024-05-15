@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL:'http://localhost:5000',
+    baseURL:'https://online-study-server-ten.vercel.app',
     withCredentials:true
 })
 export default function useAxiosSecure() {
-
+   
 
     return axiosSecure;
 }

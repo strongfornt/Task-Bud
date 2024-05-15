@@ -1,25 +1,28 @@
 /* eslint-disable react/prop-types */
 import { AiFillFileMarkdown } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import defaultProfile from "./../../assets/logo/deFaultProfile1.png";
 import useAuth from "../../useHooks/useAuth";
 import Swal from "sweetalert2";
-import axios from "axios";
-import toast from "react-hot-toast";
-export default function AssignmentCard({ data,setRefetch, refetch }) {
-  const { _id, title, image, difficulty, marks, date, creator } = data || {};
-  const { theme,user } = useAuth();
 
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../useHooks/useAxiosSecure";
+export default function AssignmentCard({ data, setRefetch, refetch }) {
+  const { _id, title, image, difficulty, marks, date, creator } = data || {};
+  const axiosSecure = useAxiosSecure();
+  const { theme, user, logOut } = useAuth();
+  const navigate = useNavigate();
+  const { email: userEmail } = user || {};
   //delete the document ============================================
-  const handleDelete = (id,email) => {
-    if(!user) {
-        toast.error('Log in required to proceed with deletion.')
-        return
+  const handleDelete = (id, email) => {
+    if (!user) {
+      toast.error("Log in required to proceed with deletion.");
+      return;
     }
-if(email !== user?.email) {
-    toast.error("Denied! Only the creator can delete")
-    return
-}
+    if (email !== userEmail) {
+      toast.error("Denied! Only the creator can delete");
+      return;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,20 +33,28 @@ if(email !== user?.email) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(
-            `http://localhost:5000/assignment/${id}`
-          )
+        axiosSecure
+          .delete(`/assignment/${id}?email=${userEmail}`)
           .then((res) => {
             const data = res.data;
             if (data.deletedCount) {
-              
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success",
               });
               setRefetch(!refetch);
+            }
+          })
+          .catch(async (err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+              toast.error(
+                `${err.response.data.message} log in with valid credentials.`
+              );
+              await logOut();
+              navigate("/login");
+            } else {
+              toast.error("Retry with stable connection.");
             }
           });
       }
@@ -82,7 +93,7 @@ if(email !== user?.email) {
             </div>
           </div>
           <Link
-          to={`/assignmentDetails/${_id}`}
+            to={`/assignmentDetails/${_id}`}
             className={`underline ${
               theme === "light" ? "decoration-black/65" : "decoration-white/65"
             }`}
@@ -116,14 +127,16 @@ if(email !== user?.email) {
           <h2 className="mb-1 text-xl font-medium">{title}</h2>
         </div>
         <div className="flex flex-wrap justify-between">
-          <Link 
-          to={`/updateAssignment/${_id}`}
-          className="px-2 py-[2px] bg-teal-500 text-white rounded-md hover:bg-teal-600 duration-300 font-medium">
+          <Link
+            to={`/updateAssignment/${_id}`}
+            className="px-2 py-[2px] bg-teal-500 text-white rounded-md hover:bg-teal-600 duration-300 font-medium"
+          >
             Update
           </Link>
-          <button 
-            onClick={()=>handleDelete(_id,creator?.email)}
-          className="px-2 bg-red-500 text-white rounded-md hover:bg-red-600 duration-300 font-medium">
+          <button
+            onClick={() => handleDelete(_id, creator?.email)}
+            className="px-2 bg-red-500 text-white rounded-md hover:bg-red-600 duration-300 font-medium"
+          >
             Delete
           </button>
         </div>

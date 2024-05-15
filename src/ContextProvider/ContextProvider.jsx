@@ -58,17 +58,17 @@ import axios from "axios";
           setUser(currentUser);
           setLoading(false)
           //if user exist then issue a token ===============================
-          axios.post('http://localhost:5000/jwt',loggedUser,{withCredentials: true})
-          .then(res =>{
-            console.log('token response',res.data);
+          axios.post('https://online-study-server-ten.vercel.app/jwt',loggedUser,{withCredentials: true})
+          .then(() =>{
+            
           })
           
         } else {
           setUser(null);
           setLoading(false)
-          axios.post('http://localhost:5000/logout',loggedUser,{withCredentials:true})
-          .then(res => {
-            console.log(res.data);
+          axios.post('https://online-study-server-ten.vercel.app/logout',loggedUser,{withCredentials:true})
+          .then(() => {
+           
           })
         }
       });

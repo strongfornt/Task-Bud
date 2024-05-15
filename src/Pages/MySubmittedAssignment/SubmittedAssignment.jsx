@@ -10,16 +10,19 @@ import AssignmentSpinner from "../../Shared/Spinner/AssignmentSpinner";
 import NotFound from "./NotFound";
 
 
+
 export default function SubmittedAssignment() {
     const {theme,user} = useAuth()
     const [api,setApi] = useState(null);
     const {data,isLoading} = useTanstack(api,"submittedAssignment")
+   
     useEffect(()=>{
         if(user?.email){
-            setApi(`http://localhost:5000/submit/${user?.email}`)
+            setApi(`https://online-study-server-ten.vercel.app/submit/${user?.email}`)
         }
     },[user?.email])
-    
+
+   
     
   return (
    <>

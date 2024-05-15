@@ -46,12 +46,12 @@ import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
             {
               path:'/updateAssignment/:id',
               element:<PrivateRoute><AssignmentUpdate/></PrivateRoute>,
-              loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+              loader:({params})=>fetch(`https://online-study-server-ten.vercel.app/assignment/${params.id}`)
             },
             {
               path:'/assignmentDetails/:id',
               element:<PrivateRoute><AssignmentDetails/></PrivateRoute>,
-              loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+              loader:({params})=>fetch(`https://online-study-server-ten.vercel.app/assignment/${params.id}`)
             },
             {
               path:'/mySubmitted',

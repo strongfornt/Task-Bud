@@ -21,7 +21,7 @@ export default function Assignments() {
 //data fetch hook===============================================
   useEffect(() => {
     const getData = async () => {
-        const {data} =  await axios(`http://localhost:5000/assignment?page=${currentPage}&size=${itemPerPages}&filter=${filter}`,{withCredentials:true})
+        const {data} =  await axios(`https://online-study-server-ten.vercel.app/assignment?page=${currentPage}&size=${itemPerPages}&filter=${filter}`)
         setData(data)
         setIsLoading(false)
     }
@@ -31,7 +31,7 @@ export default function Assignments() {
   //data count hook========================================
   useEffect(()=>{
     const getCount = async () =>{
-        const {data} = await axios(`http://localhost:5000/assignmentCount?filter=${filter}`)
+        const {data} = await axios(`https://online-study-server-ten.vercel.app/assignmentCount?filter=${filter}`)
         setCount(data.count)
     }
     getCount()

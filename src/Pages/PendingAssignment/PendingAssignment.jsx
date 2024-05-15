@@ -8,10 +8,11 @@ import useTanstack from "../../useHooks/useTanstack";
 import NotFound from "../MySubmittedAssignment/NotFound";
 
 export default function PendingAssignment() {
-  const { theme } = useAuth();
-
+  const { theme,user } = useAuth();
+  console.log(user?.email);
+  const {email} = user || {}
   const { data, isLoading } = useTanstack(
-    "http://localhost:5000/pending",
+    `https://online-study-server-ten.vercel.app/pending?email=${email}`,
     "pending"
   );
 

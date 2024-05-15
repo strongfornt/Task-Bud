@@ -7,13 +7,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import toast from "react-hot-toast";
-import axios from "axios";
+
+import useAxiosSecure from "../../../useHooks/useAxiosSecure";
 
 export default function AssignmentUpdate() {
-    const {theme } = useAuth();
+    const {theme,user,logOut } = useAuth();
+    const {email} = user || {}
     const data = useLoaderData();
     const {  _id,title, image, difficulty, marks,description,date:prevDate } = data || {};
-    
+    const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
   
     const [startDate, setStartDate] = useState(new Date(prevDate));
@@ -40,24 +42,35 @@ export default function AssignmentUpdate() {
           marks,
           date,
         };
-    
-        axios
-          .put(
-            // "https://online-study-server-ten.vercel.app/assignment",
-            `http://localhost:5000/assignment/${_id}`,
-            updateAssignment,
-          )
-          .then((res) => {
-            const data = res.data;
-            if (data.modifiedCount) {
-              toast.success(" Data updated smoothly!");
-              form.reset();
-              navigate('/assignments')
+        //update function =======================
+        const updateData =async() =>{
+            try{
+             const {data} = await axiosSecure
+              .put(
+                // "https://online-study-server-ten.vercel.app/assignment?email=${email}",
+                `/assignment/${_id}?email=${email}`,
+                updateAssignment
+              )
+              if (data.modifiedCount) {
+                toast.success(" Data updated smoothly!");
+                form.reset();
+                navigate('/assignments')
+              }
+
+            }catch(err){
+             
+              if(err.response.status === 401 || err.response.status === 403){
+                toast.error(`${err.response.data.message} log in with valid credentials.`)
+                await logOut()
+                navigate('/login')
             }
-          })
-          .catch(() => {
-            toast.error("Data update failed. Please check your connection and try again.");
-          });     
+            else{
+              toast.error("Data update failed. Please check your connection and try again.");
+            }
+
+            }
+        }
+        updateData()    
       };
 
   return (

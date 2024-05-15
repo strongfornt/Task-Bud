@@ -28,11 +28,11 @@ export default function PendingCard({ data }) {
  //using tanstack mutation for put data================
   const{mutateAsync} = useMutation({
     mutationFn:async({id,AssignmentMark})=>{
-        const {data} = await axios.put(`http://localhost:5000/pending/${id}`,AssignmentMark)
+        const {data} = await axios.put(`https://online-study-server-ten.vercel.app/pending/${id}`,AssignmentMark)
         console.log(data);
     },
     onSuccess: ()=>{
-      toast.success("Assignment submitted successfully!")
+      toast.success("Assignment graded successfully!")
        setModal(false)
       // refetch()
       queryClient.invalidateQueries({queryKey:['pending']})
