@@ -37,11 +37,16 @@ export default function Home() {
 
           <div  className="mt-16 ">
       <Fade triggerOnce={true} direction="up" duration={1000} cascade={false} >
-      <h1 className=" mb-3 text-2xl font-semibold text-center   text-teal-400 ">
-      Success Stories
-        </h1>
+      <h2
+              className={`text-2xl font-bold ml-2 mb-4 sm:text-3xl ${
+                theme === "light" && "text-[#4b5664]"
+              }`}
+            >
+              Success{" "}
+              <span className="underline decoration-teal-400 ">Stories</span>
+            </h2>
         <p
-          className={`text-sm text-center px-2 mb-8 max-w-screen-sm mx-auto ${
+          className={`text-sm text-start px-2 mb-8 max-w-screen-sm  ${
             theme === "light" ? "text-[#4b5664]" : "text-white"
           }`}
         >
