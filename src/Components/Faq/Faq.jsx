@@ -7,7 +7,7 @@ export default function Faq() {
   return (
     <>
       <section className="flex gap-2  flex-row-reverse">
-        <div className=" lg:flex flex-1 hidden ">
+        <div className="  lg:flex flex-1 justify-end hidden ">
           <Lottie animationData={Faqs} />
         </div>
         <section className="flex-1 ">
