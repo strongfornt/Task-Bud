@@ -29,6 +29,7 @@ https://github.com/strongfornt/Task-bud-server
 2- Set up Firebase for authentication and paste your own credential in firebase.config file.
 
 3- Clone the server site repo repository:
+ - set up dependencies : npm i
  - Set up MongoDB
  - Set up MongoDB Atlas or run a local instance.
  - Add your MongoDB connection URI located in index file
